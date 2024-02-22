@@ -1,11 +1,11 @@
-import MainContainer from "./MainContainer";
+import { Outlet } from "react-router";
 import SideBar from "./SideBar";
 
 const Body = () => {
     return (
-        <div className="flex justify-between px-4 gap-1">
+        <div className="flex px-4 gap-1">
             <SideBar />
-            <MainContainer />
+            <Outlet />
         </div>
     );
 };
