@@ -4,7 +4,7 @@ const btnList = ["All", "JavaScript", "Mixes", "Gaming", "Live", "Music", "T-Ser
 
 const ButtonList = () => {
     return (
-        <div className="flex gap-3 mt-4">
+        <div className="flex gap-3 mt-4 flex-wrap">
             {btnList.map((btn, index) => (
                 <Buttons key={index} name={btn} />
             ))}

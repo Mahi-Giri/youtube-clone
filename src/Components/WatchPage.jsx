@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeMenu } from "../Redux/appSlice";
@@ -8,14 +9,15 @@ const WatchPage = () => {
     const [search] = useSearchParams();
 
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         dispatch(closeMenu());
     }, []);
 
     return (
-        <div className="mt-4 ml-2">
+        <div className="mt-4 ml-28">
             <iframe
+                className="rounded-xl"
                 width="1200"
                 height="680"
                 src={WATCH_PAGE + search.get("v") + "?&autoplay=1"}

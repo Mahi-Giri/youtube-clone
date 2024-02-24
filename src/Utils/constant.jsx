@@ -14,3 +14,5 @@ export const YOUTUBE_VIDEO_API =
     YOUTUBE_API_KEY;
 
 export const WATCH_PAGE = "https://www.youtube.com/embed/";
+
+export const YOUTUBE_SEARCH_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
