@@ -2,14 +2,23 @@
 import { useEffect, useState } from "react";
 import { toggleMenu } from "../Redux/appSlice";
 import { HAMBURGER_ICON, SEARCH_LOGO, USER_ICON, YOUTUBE_LOGO, YOUTUBE_SEARCH_API } from "../Utils/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cacheResult } from "../Redux/searchSlice";
 
 const Header = () => {
     const [search, setSearch] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    const searchCache = useSelector((store) => store.search);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const timer = setTimeout(() => getSearchSuggestions(), 200);
+        const timer = setTimeout(() => {
+            if (searchCache[search]) {
+                setSuggestions(searchCache[search]);
+            } else {
+                getSearchSuggestions();
+            }
+        }, 200);
         return () => {
             clearTimeout(timer);
         };
@@ -19,9 +28,12 @@ const Header = () => {
         const response = await fetch(YOUTUBE_SEARCH_API + search);
         const data = await response.json();
         setSuggestions(data[1]);
+        dispatch(
+            cacheResult({
+                [search]: data[1],
+            })
+        );
     };
-
-    const dispatch = useDispatch();
 
     const toggleMenuHandler = () => {
         dispatch(toggleMenu());
@@ -56,7 +68,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div>
-                    <img className="m-auto w-10 h-10" src={USER_ICON} alt="User-Icon" />
+                    <img className="m-auto w-10 h-10 cursor-pointer" src={USER_ICON} alt="User-Icon" />
                 </div>
             </div>
             <div className="shadow-xl rounded-xl left-[41rem] bg-gray-100 w-[30%] absolute max-h-[29%] overflow-auto">

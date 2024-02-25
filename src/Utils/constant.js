@@ -7,7 +7,7 @@ export const USER_ICON =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmhjuzX_MetFn5xi8007XsRyX8X9_doXQDuMdaiX4DpUAZQdCW-jrn92jAVvE-iCPfvqY&usqp=CAU";
 export const SEARCH_LOGO = "https://www.freepnglogos.com/uploads/search-png/search-file-ios-svg-wikimedia-commons-18.png";
 
-const YOUTUBE_API_KEY = "AIzaSyBrKDAe_ruitogONyzUffKe8YXevL4sVtk";
+const YOUTUBE_API_KEY = "AIzaSyB3mcsCTIf--2Qn4ZPqC0yftJiZWXeC2sk";
 
 export const YOUTUBE_VIDEO_API =
     "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
