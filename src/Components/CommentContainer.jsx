@@ -222,7 +222,7 @@ const commentData = [
 
 const CommentContainer = () => {
     return (
-        <div className="mt-5 w-[75%]">
+        <div className="mt-5 w-[72%]">
             <h1 className="text-2xl font-bold">Comments</h1>
             <CommentList comments={commentData} />
         </div>

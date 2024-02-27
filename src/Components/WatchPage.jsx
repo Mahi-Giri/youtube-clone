@@ -3,19 +3,18 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeMenu } from "../Redux/appSlice";
 import { useSearchParams } from "react-router-dom";
-import { WATCH_PAGE } from "../Utils/constant";
+import { TITLE, WATCH_PAGE } from "../Utils/constant";
 import CommentContainer from "./CommentContainer";
 import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
     const [search] = useSearchParams();
 
-    // const videoTitle = useSelector((store) => store.video.videos);
-    // const { title } = videoTitle[1]?.snippet;
+    const videoId = search.get("v");
 
-    // const searchParams = new URLSearchParams(window.location.search);
-    // const query = searchParams.get("v");
-    // console.log(query);
+    const title = TITLE[videoId]?.title;
+    const channelTitle = TITLE[videoId]?.channelTitle;
+    const likeCount = TITLE[videoId]?.likeCount;
 
     const dispatch = useDispatch();
 
@@ -41,7 +40,30 @@ const WatchPage = () => {
                     <LiveChat />
                 </div>
             </div>
-            {/* <h1 className="mt-4 font-bold text-xl">{title}</h1> */}
+            <h1 className="mt-4 font-bold text-2xl">{title}</h1>
+            <div className="max-w-[72%] flex justify-between py-2">
+                <div>
+                    <h2 className="text-xl font-bold py-2">{channelTitle}</h2>
+                </div>
+                <div className="flex justify-between gap-5 text-lg font-bold">
+                    <button className="rounded-full bg-black text-white px-4 py-2 hover:opacity-85">Subscribe</button>
+                    <button className="flex gap-2 justify-center items-center rounded-full bg-gray-200 px-4 py-2 hover:bg-gray-300">
+                        <img
+                            className="w-6 h-6"
+                            src="https://cdn.icon-icons.com/icons2/2640/PNG/512/heart_favourite_love_like_icon_159300.png"
+                            alt="like"
+                        />
+                        : {(likeCount / 1000).toFixed(1)+" K"}
+                    </button>
+                    <button className="flex gap-2 justify-center items-center rounded-full bg-gray-200 px-4 py-2 hover:bg-gray-300">
+                        <img
+                            className="w-6 h-6"
+                            src="https://cdn.icon-icons.com/icons2/2819/PNG/512/love_heart_favourite_icon_179532.png"
+                            alt="like"
+                        />
+                    </button>
+                </div>
+            </div>
             <CommentContainer />
         </div>
     );
